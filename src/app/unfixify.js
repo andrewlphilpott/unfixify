@@ -2,7 +2,7 @@ function unfixify() {
   var allElements = document.querySelectorAll('*');
   var fixedElements = [];
 
-  allElements.forEach(element => {
+  allElements.forEach(function(element){
     if(
       window.getComputedStyle(element, null).getPropertyValue('position') == 'fixed' ||
       window.getComputedStyle(element, null).getPropertyValue('position') == 'sticky'
@@ -11,14 +11,14 @@ function unfixify() {
     }
   });
 
-  fixedElements.forEach(fixedElement => {
+  fixedElements.forEach(function(fixedElement){
     fixedElement.style.cssText += ';position: absolute!important;';
   });
 }
 
 chrome.storage.sync.get({
   disabledDomains: []
-}, opts => {
+}, function(opts){
   disabledDomains = opts.disabledDomains;
 
   if(disabledDomains.indexOf(window.location.hostname) < 0) {

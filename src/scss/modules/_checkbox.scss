@@ -1,0 +1,65 @@
+/*-------------------------------------------
+  Checkbox styles
+-------------------------------------------*/
+.cbox {
+  + .cbox {
+    margin-top: 10px;
+  }
+
+  input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+
+    &:checked {
+      + label {
+        &:before,
+        &:after {
+          border-color: $green;
+        }
+
+        &:before {
+          background: $green;
+        }
+
+        &:after {
+          left: 20px;
+        }
+      }
+    }
+  }
+
+  label {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 20px;
+    padding-left: 50px;
+    position: relative;
+
+    &:before,
+    &:after {
+      background: $white;
+      border: 1px solid darken($border-color, 10);
+      content: '';
+      cursor: pointer;
+      height: 20px;
+      @extend %transition;
+    }
+
+    &:before {
+      border-radius: 100em;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 40px;
+    }
+
+    &:after {
+      border-radius: 50%;
+      box-shadow: $box-shadow-normal;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 20px;
+    }
+  }
+}

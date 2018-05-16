@@ -1,0 +1,10 @@
+/*-------------------------------------------
+  Global styles
+-------------------------------------------*/
+body {
+  color: $text;
+  font-family: $sans-serif;
+  font-size: 16px;
+  @extend %auto-antialias;
+  width: 300px;
+}

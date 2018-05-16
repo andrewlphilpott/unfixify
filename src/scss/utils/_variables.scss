@@ -1,0 +1,96 @@
+/*-------------------------------------------
+  Colors
+-------------------------------------------*/
+// Brand colors
+$blue: #2101f8;
+$green: #1bae3e;
+$orange: #dd5900;
+$pink: #e201ee;
+$purple: #620ce1;
+$purple-alt: #a801f8;
+$red: #b21800;
+$yellow: #e1ab00;
+
+
+// Grays
+$black: #000;
+$gray: #5e5a63;
+$gray-dark: #29272b;
+$gray-light: #ded8e8;
+$gray-extra-light: #efe8fa;
+$white: #fff;
+
+// Accents
+$accent-1: $purple;
+$accent-2: $pink;
+$accent-3: $blue;
+$accent-4: $purple-alt;
+$accent-5: $green;
+
+// UI colors
+$text: $gray-dark;
+$text-light: $gray;
+$border-color: $gray-light;
+
+// State colors
+$success: $green;
+$warning: $yellow;
+$error: $red;
+
+/*-------------------------------------------
+  Fonts
+-------------------------------------------*/
+$sans-serif: Helvetica, Arial, sans-serif;
+
+/*-------------------------------------------
+  Stacking
+-------------------------------------------*/
+$bottom: 999997;
+$middle: 999998;
+$top: 999999;
+
+/*-------------------------------------------
+  Grid settings
+-------------------------------------------*/
+$page-padding: 15px;
+$page-padding-lg: 30px;
+
+/*-------------------------------------------
+  Misc
+-------------------------------------------*/
+// Border radius
+$border-radius-amount: 3px;
+$border-radius-all: $border-radius-amount;
+$border-radius-top: $border-radius-amount $border-radius-amount 0 0;
+$border-radius-bottom: 0 0 $border-radius-amount $border-radius-amount;
+$border-radius-left: $border-radius-amount 0 0 $border-radius-amount;
+$border-radius-right: 0 $border-radius-amount $border-radius-amount 0;
+
+// Box shadows
+$box-shadow-normal: 0 2px 3px 0 transparentize($black, .85);
+
+/*-------------------------------------------
+  Text inputs
+-------------------------------------------*/
+$text-input-list: (
+  'input[type="color"]',
+  'input[type="date"]',
+  'input[type="datetime-local"]',
+  'input[type="datetime"]',
+  'input[type="email"]',
+  'input[type="month"]',
+  'input[type="number"]',
+  'input[type="password"]',
+  'input[type="search"]',
+  'input[type="tel"]',
+  'input[type="text"]',
+  'input[type="time"]',
+  'input[type="url"]',
+  'input[type="week"]',
+);
+
+$all-text-inputs: ();
+
+@each $input in $text-input-list {
+  $all-text-inputs: append($all-text-inputs, $input, comma);
+}

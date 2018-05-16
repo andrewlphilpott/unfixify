@@ -4,17 +4,20 @@ function saveOpts () {
   // Get the existing options
   chrome.storage.sync.get({
     disabledDomains: []
-  }, opts => {
+  }, function(opts){
     disabledDomains = opts.disabledDomains;
   });
 
   // Check if this domain should be added
   // to the list of disabled domains
   var disableThisDomain = document.querySelector('#opt-disable').checked;
+  var data = {};
 
   if(disableThisDomain) {
     // Add domain to the disabled list if checked
-    chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, (tabs) => {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+      console.log(tabs)
+
       var link = document.createElement('a');
       link.href = tabs[0].url;
 
@@ -25,11 +28,15 @@ function saveOpts () {
       }
 
       // Save the options
-      storeOpt('disabledDomains', disabledDomains)
+      data = {
+        disabledDomains: disabledDomains
+      }
+
+      storeOpt(data)
     });
   } else {
     // Otherwise, remove it
-    chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, (tabs) => {
+    chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs){
       var link = document.createElement('a');
       link.href = tabs[0].url;
 
@@ -41,17 +48,17 @@ function saveOpts () {
       }
 
       // Save the options
-      storeOpt('disabledDomains', disabledDomains)
+      data = {
+        disabledDomains: disabledDomains
+      }
+
+      storeOpt(data);
     });
   }
 }
 
-function storeOpt(key, value) {
-  console.log(key)
-
-  chrome.storage.sync.set({
-    [key]: value
-  }, () => {
+function storeOpt(data) {
+  chrome.storage.sync.set(data, function(){
     // Let the user know the options were saved
     console.log('options saved');
   });
@@ -59,20 +66,20 @@ function storeOpt(key, value) {
 
 function initOpts() {
   var optForm = document.querySelector('#opt-form');
-  optForm.addEventListener('submit', (e) => {
+  optForm.addEventListener('submit', function(e){
     e.preventDefault();
     saveOpts();
   });
 
   chrome.storage.sync.get({
     disabledDomains: []
-  }, opts => {
+  }, function(opts){
     disabledDomains = opts.disabledDomains;
 
     console.log(disabledDomains);
 
     // Check if this domain has been disabled
-    chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, (tabs) => {
+    chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs){
       var link = document.createElement('a');
       link.href = tabs[0].url;
 

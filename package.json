@@ -1,0 +1,21 @@
+{
+  "name": "agreements-ui",
+  "version": "0.0.1",
+  "devDependencies": {
+    "gulp": "latest",
+    "gulp-autoprefixer": "latest",
+    "browser-sync": "^2.23.7",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.1",
+    "gulp-sass-glob": "latest",
+    "gulp-sourcemaps": "latest",
+    "gulp-twig": "latest",
+    "gulp-uglify": "^3.0.0",
+    "gulp-watch": "latest",
+    "jshint": "^2.9.5"
+  },
+  "scripts": {
+    "start": "gulp"
+  }
+}

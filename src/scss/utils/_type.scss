@@ -1,0 +1,53 @@
+/*-------------------------------------------
+  Global typographic styles
+-------------------------------------------*/
+// Font sizes, line-heights, and margins
+%h1 {font-size: em(22)}
+%h2 {font-size: em(20)}
+%h3 {font-size: em(18)}
+%h4 {font-size: em(16)}
+%h5 {font-size: em(14)}
+%h6 {font-size: em(12)}
+%xs {font-size: em(10)}
+
+#agr_wrap {
+  h1 {
+    @extend %h1;
+    line-height: 1.375;
+  }
+  h2 {
+    @extend %h2;
+    line-height: 1.416666667;
+  }
+  h3 {
+    @extend %h3;
+    line-height: 1.5;
+  }
+  h4, p, ol, ul, dl {
+    @extend %h4;
+    line-height: 1.5625;
+  }
+  h5 {
+    @extend %h5;
+    line-height: 1.5;
+  }
+  h6 {
+    @extend %h6;
+    line-height: 1.833333333;
+  }
+
+  h5, p, ol, ul, dl {
+    margin-bottom: 1.5em;
+  }
+
+  // Font styles/weights
+  em {
+    font-style: italic;
+  }
+  strong {
+    font-weight: 700;
+  }
+  abbr {
+    text-decoration: none;
+  }
+}

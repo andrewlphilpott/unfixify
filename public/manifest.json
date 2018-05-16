@@ -5,19 +5,19 @@
   "version": "1.0",
   "browser_action": {
     "default_icon": {
-      "19": "img/icn-19.png",
-      "38": "img/icn-38.png"
+      "19": "static/img/icn-19.png",
+      "38": "static/img/icn-38.png"
     },
     "default_popup": "index.html"
   },
   "icons": {
-    "16": "img/icn-16.png",
-    "48": "img/icn-48.png",
-    "128": "img/icn-128.png"
+    "16": "static/img/icn-16.png",
+    "48": "static/img/icn-48.png",
+    "128": "static/img/icn-128.png"
   },
   "content_scripts": [{
     "matches": ["<all_urls>"],
-    "js": ["js/unfixify.js"]
+    "js": ["static/js/unfixify.min.js"]
   }],
   "permissions": ["tabs", "storage", "http://*/*"]
 }
