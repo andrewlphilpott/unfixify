@@ -32,7 +32,7 @@
 }
 
 // px to em
-$em-base: 14;
+$em-base: 16;
 
 @function em($pxval, $base: $em-base) {
 	@if not unitless($pxval) {

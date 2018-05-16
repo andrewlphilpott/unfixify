@@ -1,10 +1,14 @@
 /*-------------------------------------------
   Page styles
 -------------------------------------------*/
+.page {
+  padding-top: $page-padding;
+}
+
 .page__title {
   border-bottom: 1px solid $border-color;
   @extend %h1;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   padding-bottom: 10px;
   text-align: center;
 }

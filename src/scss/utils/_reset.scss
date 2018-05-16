@@ -1,7 +1,7 @@
-div, span, applet, object, iframe,
+html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
-del, dfn, em, figure, font, img, ins, kbd, q, s, samp,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
@@ -31,9 +31,7 @@ aside, main {
 }
 
 // set all box sizing to border
-*,
-*:before,
-*:after {
+* {
 		-moz-box-sizing: border-box;
 		-webkit-box-sizing: border-box;
 	box-sizing: border-box;
@@ -69,7 +67,6 @@ ul ul ul {list-style: square;}
 // set input textarea and button font-family to match that of the body
 input, textarea, button {
 	font-family: inherit;
-	font-size: inherit;
 }
 textarea {
 	resize: none;
@@ -81,8 +78,11 @@ input[type="checkbox"] {
   *vertical-align: baseline;
 }
 
-// button pointer
-button {cursor: pointer;}
+// button pointer and remove margin
+button {
+  cursor: pointer;
+  margin: 0;
+}
 
 // vertical alignment of radio buttons
 input[type="radio"] {vertical-align: text-bottom;}

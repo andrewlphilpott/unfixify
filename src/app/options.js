@@ -1,23 +1,34 @@
 disabledDomains = [];
+disableAll = false;
 
 function saveOpts () {
   // Get the existing options
   chrome.storage.sync.get({
-    disabledDomains: []
+    disabledDomains: [],
+    disableAll: false
   }, function(opts){
     disabledDomains = opts.disabledDomains;
+    disableAll = opts.disableAll;
   });
+
+  var data = {};
+
+  // Check if all should be disabled
+  var disableAllDomains = document.querySelector('#opt-disable-all').checked;
+
+  if(disableAllDomains) {
+    data.disableAll = true;
+  } else {
+    data.disableAll = false;
+  }
 
   // Check if this domain should be added
   // to the list of disabled domains
   var disableThisDomain = document.querySelector('#opt-disable').checked;
-  var data = {};
 
   if(disableThisDomain) {
     // Add domain to the disabled list if checked
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-      console.log(tabs)
-
       var link = document.createElement('a');
       link.href = tabs[0].url;
 
@@ -28,15 +39,13 @@ function saveOpts () {
       }
 
       // Save the options
-      data = {
-        disabledDomains: disabledDomains
-      }
+      data.disabledDomains = disabledDomains;
 
       storeOpt(data)
     });
   } else {
     // Otherwise, remove it
-    chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs){
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
       var link = document.createElement('a');
       link.href = tabs[0].url;
 
@@ -48,9 +57,7 @@ function saveOpts () {
       }
 
       // Save the options
-      data = {
-        disabledDomains: disabledDomains
-      }
+      data.disabledDomains = disabledDomains;
 
       storeOpt(data);
     });
@@ -60,7 +67,26 @@ function saveOpts () {
 function storeOpt(data) {
   chrome.storage.sync.set(data, function(){
     // Let the user know the options were saved
-    console.log('options saved');
+    var body = document.body;
+
+    var toaster = document.createElement('aside');
+    toaster.className = 'toaster';
+
+    var toasterBody = document.createElement('p');
+    toasterBody.textContent = 'Your settings have been saved.';
+
+    toaster.append(toasterBody);
+    body.append(toaster);
+
+    // Make sure the alert gets removed
+    setTimeout(function(){
+      toaster.remove();
+    }, 3000);
+
+    // Refresh the page
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+      chrome.tabs.reload(tabs[0].id);
+    });
   });
 }
 
@@ -72,23 +98,28 @@ function initOpts() {
   });
 
   chrome.storage.sync.get({
-    disabledDomains: []
+    disabledDomains: [],
+    disableAll: false
   }, function(opts){
     disabledDomains = opts.disabledDomains;
-
-    console.log(disabledDomains);
+    disableAll = opts.disableAll;
 
     // Check if this domain has been disabled
-    chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function(tabs){
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
       var link = document.createElement('a');
       link.href = tabs[0].url;
 
       var thisDomain = link.hostname;
 
       if(disabledDomains.indexOf(thisDomain) >= 0) {
-        var disableThisDomain = document.querySelector('#opt-disable').checked = true;
+        document.querySelector('#opt-disable').checked = true;
       }
     });
+
+    // Check if all domains have been disabled
+    if(disableAll === true) {
+      document.querySelector('#opt-disable-all').checked = true;
+    }
   });
 }
 

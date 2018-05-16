@@ -4,21 +4,27 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="static/css/screen.css" media="screen" />
   </head>
-  <body class="page">
+  <body id="main" class="page">
     <h1 class="page__title">Unfixify</h1>
 
-    <form id="opt-form">
-      <fieldset>
-        <ul class="fields">
-          <li class="cbox">
-            <input type="checkbox" id="opt-disable" value="true" />
-            <label for="opt-disable">Disable for this domain</label>
-          </li>
-        </ul>
-      </fieldset>
+    <div class="wrap">
+      <form id="opt-form">
+        <fieldset>
+          <ul class="fields">
+            <li class="cbox">
+              <input type="checkbox" id="opt-disable" value="true" />
+              <label for="opt-disable">Disable for this website</label>
+            </li>
+            <li class="cbox">
+              <input type="checkbox" id="opt-disable-all" value="true" />
+              <label for="opt-disable-all">Disable for all websites</label>
+            </li>
+          </ul>
+        </fieldset>
 
-      <button class="btn--prominent" type="submit">Save</button>
-    </form>
+        <button class="btn--prominent" type="submit">Save</button>
+      </form>
+    </div>
 
     <script type="text/javascript" src="static/js/options.min.js"></script>
   </body>

@@ -6,5 +6,12 @@ body {
   font-family: $sans-serif;
   font-size: 16px;
   @extend %auto-antialias;
+  position: relative;
+  transform: scale(1);
   width: 300px;
+}
+
+// Containing elements
+.wrap {
+  padding: $page-padding;
 }

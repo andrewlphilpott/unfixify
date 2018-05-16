@@ -1,0 +1,32 @@
+/*-------------------------------------------
+  Toaster styles
+-------------------------------------------*/
+.toaster {
+  animation: toast 3s ease 1 forwards;
+  background: $gray-extra-light;
+  border-bottom: 1px solid $border-color;
+  left: 0;
+  padding: 5px $page-padding;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@keyframes toast {
+  0% {
+    transform: translateY(-100%);
+  } 10% {
+    transform: translateY(0);
+  } 50% {
+    transform: translateY(0);
+  } 90% {
+    transform: translateY(0);
+  } 100% {
+    transform: translateY(-100%);
+  }
+}

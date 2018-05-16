@@ -1,0 +1,48 @@
+// /*-------------------------------------------
+//   Alert styles
+// -------------------------------------------*/
+// .alert {
+//   @extend %center-vert-alt;
+//   background: transparentize($white, .25);
+//   bottom: 0;
+//   left: 0;
+//   position: absolute;
+//   right: 0;
+//   text-align: center;
+//   top: 0;
+//   z-index: $top;
+// }
+//
+// .alert--fade {
+//   animation: fade 5s ease 1 forwards;
+// }
+//
+// .alert__content {
+//   background: $white;
+//   border: 1px solid $border-color;
+//   border-radius: $border-radius-all;
+//   box-shadow: $box-shadow-normal;
+//   display: inline-block;
+//   padding: $page-padding;
+//   text-align: left;
+//   vertical-align: middle;
+//   width: 270px;
+//
+//   p:last-child {
+//     margin-bottom: 0;
+//   }
+// }
+//
+// @keyframes fade {
+//   0% {
+//     opacity: 0;
+//   } 10% {
+//     opacity: 1;
+//   } 50% {
+//     opacity: 1;
+//   } 90% {
+//     opacity: 1;
+//   } 100% {
+//     opacity: 0;
+//   }
+// }

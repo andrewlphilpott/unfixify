@@ -17,15 +17,19 @@ function unfixify() {
 }
 
 chrome.storage.sync.get({
-  disabledDomains: []
+  disabledDomains: [],
+  disableAll: false
 }, function(opts){
   disabledDomains = opts.disabledDomains;
+  disableAll = opts.disableAll;
 
-  if(disabledDomains.indexOf(window.location.hostname) < 0) {
-    unfixify();
-
-    document.addEventListener('scroll', function(){
+  if(!disableAll) {
+    if(disabledDomains.indexOf(window.location.hostname) < 0) {
       unfixify();
-    });
+
+      document.addEventListener('scroll', function(){
+        unfixify();
+      });
+    }
   }
 });

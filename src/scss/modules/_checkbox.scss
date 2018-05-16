@@ -12,16 +12,12 @@
 
     &:checked {
       + label {
-        &:before,
         &:after {
-          border-color: $green;
-        }
-
-        &:before {
-          background: $green;
-        }
-
-        &:after {
+          box-shadow: -30px 0 0 0 $green,
+                      -25px 0 0 0 $green,
+                      -20px 0 0 0 $green,
+                      -15px 0 0 0 $green,
+                      -10px 0 0 0 $green;
           left: 20px;
         }
       }
@@ -29,9 +25,12 @@
   }
 
   label {
+    border-radius: 100em 0 0 100em;
     display: inline-block;
     font-weight: 400;
-    line-height: 20px;
+    height: 22px;
+    line-height: 22px;
+    overflow: hidden;
     padding-left: 50px;
     position: relative;
 
@@ -55,7 +54,6 @@
 
     &:after {
       border-radius: 50%;
-      box-shadow: $box-shadow-normal;
       left: 0;
       position: absolute;
       top: 0;
