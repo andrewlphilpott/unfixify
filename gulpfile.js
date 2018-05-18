@@ -25,7 +25,7 @@ var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var sassGlob = require('gulp-sass-glob');
 var sourcemaps = require('gulp-sourcemaps');
-var uglify = require('gulp-uglify');
+var uglify = require('gulp-uglify-es').default;
 var watch = require('gulp-watch');
 
 // Compile SASS
