@@ -20,6 +20,10 @@ body {
 a {
   color: $accent-2;
   text-decoration: underline;
+
+  &:hover {
+    color: $accent-1;
+  }
 }
 
 // Hidden elements

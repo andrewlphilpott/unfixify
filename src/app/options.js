@@ -128,13 +128,17 @@ function initOpts() {
       // Append domains
       for(let i = 0; i < enabledDomains.length; i++) {
         const li = document.createElement('li');
-        li.textContent = enabledDomains[i];
+        const link = document.createElement('a');
+
+        link.href = `http://${enabledDomains[i]}`;
+        link.target = '_blank';
+        link.textContent = enabledDomains[i];
 
         // const liRemove = document.createElement('button');
         // liRemove.className = 'btn--remove';
         // liRemove.textContent = 'X';
-        //
-        // li.appendChild(liRemove);
+
+        li.appendChild(link);
         enabledList.appendChild(li);
       }
 
