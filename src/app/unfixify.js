@@ -98,14 +98,14 @@ function unfixify() {
 }
 
 chrome.storage.sync.get({
-  disabledDomains: [],
+  enabledDomains: [],
   disableAll: false
 }, function(opts){
-  disabledDomains = opts.disabledDomains;
+  enabledDomains = opts.enabledDomains;
   disableAll = opts.disableAll;
 
   if(!disableAll) {
-    if(disabledDomains.indexOf(window.location.hostname) < 0) {
+    if(enabledDomains.indexOf(window.location.hostname) >= 0) {
       unfixify();
 
       document.addEventListener('scroll', function(){

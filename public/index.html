@@ -8,12 +8,12 @@
     <h1 class="page__title">Unfixify</h1>
 
     <div class="wrap">
-      <form id="opt-form">
+      <form id="opt-form" class="options">
         <fieldset>
           <ul class="fields">
             <li class="cbox">
-              <input type="checkbox" id="opt-disable" value="true" />
-              <label for="opt-disable">Disable for this website</label>
+              <input type="checkbox" id="opt-enable" value="true" />
+              <label for="opt-enable">Enable for this website</label>
             </li>
             <li class="cbox">
               <input type="checkbox" id="opt-disable-all" value="true" />
@@ -24,6 +24,12 @@
 
         <button class="btn--prominent" type="submit">Save</button>
       </form>
+
+      <a class="expand-btn" href="#enabled-list">
+        Show enabled sites
+      </a>
+
+      <ul id="enabled-list" class="scroll-list"></ul>
     </div>
 
     <script type="text/javascript" src="static/js/options.min.js"></script>

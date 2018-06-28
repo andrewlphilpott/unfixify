@@ -1,13 +1,13 @@
-disabledDomains = [];
+enabledDomains = [];
 disableAll = false;
 
 function saveOpts () {
   // Get the existing options
   chrome.storage.sync.get({
-    disabledDomains: [],
+    enabledDomains: [],
     disableAll: false
   }, function(opts){
-    disabledDomains = opts.disabledDomains;
+    enabledDomains = opts.enabledDomains;
     disableAll = opts.disableAll;
   });
 
@@ -24,9 +24,9 @@ function saveOpts () {
 
   // Check if this domain should be added
   // to the list of disabled domains
-  var disableThisDomain = document.querySelector('#opt-disable').checked;
+  var enableThisDomain = document.querySelector('#opt-enable').checked;
 
-  if(disableThisDomain) {
+  if(enableThisDomain) {
     // Add domain to the disabled list if checked
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
       var link = document.createElement('a');
@@ -34,12 +34,12 @@ function saveOpts () {
 
       var thisDomain = link.hostname;
 
-      if(disabledDomains.indexOf(thisDomain) < 0) {
-        disabledDomains.push(thisDomain);
+      if(enabledDomains.indexOf(thisDomain) < 0) {
+        enabledDomains.push(thisDomain);
       }
 
       // Save the options
-      data.disabledDomains = disabledDomains;
+      data.enabledDomains = enabledDomains;
 
       storeOpt(data)
     });
@@ -51,13 +51,13 @@ function saveOpts () {
 
       var thisDomain = link.hostname;
 
-      if(disabledDomains.indexOf(thisDomain) >= 0) {
-        var thisIndex = disabledDomains.indexOf(thisDomain);
-        disabledDomains.splice(thisIndex, 1);
+      if(enabledDomains.indexOf(thisDomain) >= 0) {
+        var thisIndex = enabledDomains.indexOf(thisDomain);
+        enabledDomains.splice(thisIndex, 1);
       }
 
       // Save the options
-      data.disabledDomains = disabledDomains;
+      data.enabledDomains = enabledDomains;
 
       storeOpt(data);
     });
@@ -98,27 +98,62 @@ function initOpts() {
   });
 
   chrome.storage.sync.get({
-    disabledDomains: [],
+    enabledDomains: [],
     disableAll: false
   }, function(opts){
-    disabledDomains = opts.disabledDomains;
+    enabledDomains = opts.enabledDomains;
     disableAll = opts.disableAll;
 
-    // Check if this domain has been disabled
+    // Check if this domain has been enabled
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
       var link = document.createElement('a');
       link.href = tabs[0].url;
 
       var thisDomain = link.hostname;
 
-      if(disabledDomains.indexOf(thisDomain) >= 0) {
-        document.querySelector('#opt-disable').checked = true;
+      if(enabledDomains.indexOf(thisDomain) >= 0) {
+        document.querySelector('#opt-enable').checked = true;
       }
     });
 
     // Check if all domains have been disabled
     if(disableAll === true) {
       document.querySelector('#opt-disable-all').checked = true;
+    }
+
+    // List all enabled domains
+    if(enabledDomains.length) {
+      const enabledList = document.querySelector('#enabled-list');
+
+      // Append domains
+      for(let i = 0; i < enabledDomains.length; i++) {
+        const li = document.createElement('li');
+        li.textContent = enabledDomains[i];
+
+        // const liRemove = document.createElement('button');
+        // liRemove.className = 'btn--remove';
+        // liRemove.textContent = 'X';
+        //
+        // li.appendChild(liRemove);
+        enabledList.appendChild(li);
+      }
+
+      enabledList.classList.add('hidden');
+
+      // Show/hide enabled list
+      const enabledListToggle = document.querySelector('[href="#enabled-list"]');
+
+      enabledListToggle.addEventListener('click', function(e){
+        e.preventDefault();
+        enabledList.classList.toggle('hidden');
+        enabledListToggle.classList.toggle('expanded');
+
+        if(enabledList.className.indexOf('hidden') > -1) {
+          enabledListToggle.textContent = 'Show enabled sites';
+        } else {
+          enabledListToggle.textContent = 'Hide enabled sites';
+        }
+      });
     }
   });
 }

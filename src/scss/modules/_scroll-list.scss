@@ -1,0 +1,12 @@
+/*-------------------------------------------
+  Scrollable list styles
+-------------------------------------------*/
+.scroll-list {
+  @extend %list-reset;
+  border: 1px solid $border-color;
+  @extend %h5;
+  margin-top: 15px;
+  max-height: 100px;
+  overflow: auto;
+  padding: 10px;
+}

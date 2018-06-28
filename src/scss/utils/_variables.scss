@@ -29,7 +29,7 @@ $accent-5: $green;
 
 // UI colors
 $text: $gray-dark;
-$text-light: $gray;
+$text-light: lighten($gray, 20);
 $border-color: $gray-light;
 
 // State colors

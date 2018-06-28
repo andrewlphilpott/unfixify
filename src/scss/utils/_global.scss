@@ -15,3 +15,14 @@ body {
 .wrap {
   padding: $page-padding;
 }
+
+// Links
+a {
+  color: $accent-2;
+  text-decoration: underline;
+}
+
+// Hidden elements
+.hidden {
+  display: none;
+}
